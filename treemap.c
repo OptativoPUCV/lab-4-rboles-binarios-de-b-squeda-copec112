@@ -100,9 +100,12 @@ Pair * nextTreeMap(TreeMap * tree)
 
     if (current->right != NULL) 
     {
-        TreeNode *min = minimum(current->right);
-        tree->current = min;
-        return min->pair;
+        current = current->right;
+        while (current->left != NULL) {
+            current = current->left;
+        }
+        tree->current = current;
+        return current->pair;
     }
     TreeNode *parent = current->parent;
     while (parent != NULL && current == parent->right) 
