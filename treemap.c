@@ -97,8 +97,9 @@ Pair * firstTreeMap(TreeMap * tree)
 Pair * nextTreeMap(TreeMap * tree) 
 {
     TreeNode *current = tree->current;
-    
-     if (current->right != NULL) {
+
+     if (current->right != NULL) 
+    {
         TreeNode *min = minimum(current->right);
         tree->current = min;
         return min->pair;
