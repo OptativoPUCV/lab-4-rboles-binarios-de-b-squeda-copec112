@@ -97,15 +97,11 @@ Pair * firstTreeMap(TreeMap * tree)
 Pair * nextTreeMap(TreeMap * tree) 
 {
     TreeNode *current = tree->current;
-
-    if (current->right != NULL) 
-    {
-        current = current->right;
-        while (current->left != NULL) {
-            current = current->left;
-        }
-        tree->current = current;
-        return current->pair;
+    
+     if (current->right != NULL) {
+        TreeNode *min = minimum(current->right);
+        tree->current = min;
+        return min->pair;
     }
     TreeNode *parent = current->parent;
     while (parent != NULL && current == parent->right) 
