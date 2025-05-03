@@ -63,3 +63,9 @@ treemap.c:120:32: error: 'replacment' undeclared (first use in this function)
                                 ^~~~~~~~~~
 treemap.c:120:32: note: each undeclared identifier is reported only once for each function it appears in
 28cc26b
+Sat, May  3, 2025 12:22:35 PM: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  29|0
+total_score: 70/70
+fe1b8f4
