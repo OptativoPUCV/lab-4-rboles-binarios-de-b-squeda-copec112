@@ -55,7 +55,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
     while (current != NULL) {
         parent = current;
-        if (is_equal(tree, key, current->pair->key)) return; // clave duplicada, no insertamos
+        if (is_equal(tree, key, current->pair->key)) return; 
 
         if (tree->lower_than(key, current->pair->key))
             current = current->left;
@@ -85,9 +85,40 @@ TreeNode * minimum(TreeNode * x){
 }
 
 
-void removeNode(TreeMap * tree, TreeNode* node) 
-{
+void removeNode(TreeMap * tree, TreeNode* node) {
+    if (node == NULL) return;
 
+    TreeNode *replacement = NULL;
+
+    if (node->left != NULL && node->right != NULL) 
+    {
+        TreeNode *successor = node->right;
+        while (successor->left != NULL) 
+        {
+            successor = successor->left;
+        }
+
+        node->pair = successor->pair;
+        node = successor; 
+    }
+    if (node->left != NULL)
+        replacement = node->left;
+    else if (node->right != NULL)
+        replacement = node->right;
+
+    if (replacement != NULL)
+        replacement->parent = node->parent;
+
+    if (node->parent == NULL) 
+    {
+        tree->root = replacement; 
+    } 
+    else if (node == node->parent->left) 
+    {
+        node->parent->left = replacement;
+    } 
+    else node->parent->right = replacment;
+    free(node);
 }
 
 void eraseTreeMap(TreeMap * tree, void* key)
